@@ -1,0 +1,1 @@
+json.array! @comments, partial: 'api/v1/todos/comments/comment', as: :comment
