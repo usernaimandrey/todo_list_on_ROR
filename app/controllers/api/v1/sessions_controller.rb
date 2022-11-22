@@ -7,10 +7,7 @@ module Api
         user = User.find_by(email: permited_params[:email])
         if user&.authenticate(permited_params[:password])
           sign_in(user)
-          render json: {
-            status: 200,
-            user_id: user.id
-          }
+          render json: payload(user)
         else
           render json: {
             status: 404,

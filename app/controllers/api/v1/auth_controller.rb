@@ -7,10 +7,7 @@ module Api
         @user = User.new(auth_params)
         if @user.save
           sign_in(@user)
-          render json: {
-            status: 200,
-            user_id: @user.id
-          }
+          render json: payload(@user)
         else
           render json: {
             error: "User with email #{params[:email]} alredy exist."

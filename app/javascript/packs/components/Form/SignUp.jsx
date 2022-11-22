@@ -55,7 +55,7 @@ const SignUp = () => {
                     }
                   });
           auth.logIn();
-          localStorage.setItem('userData', JSON.stringify({ userId: data.user_id }));
+          localStorage.setItem('userData', JSON.stringify({ userId: data.user_id, token: data.auth_token }));
           navigate('/', { from: location })
         } catch(e) {
           if (e.response && e.response.status == 422) {

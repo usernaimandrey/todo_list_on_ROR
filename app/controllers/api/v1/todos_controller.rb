@@ -3,6 +3,8 @@
 module Api
   module V1
     class TodosController < Api::ApplicationController
+      before_action :authenticate_request!
+
       def index
         @todos = Todo.includes(:comments).all
         respond_to do |format|
@@ -34,7 +36,7 @@ module Api
         @todo.destroy
         raise @todo.errors[:base].to_s unless @todo.errors[:base].empty?
 
-        render json: { success: true }, status: :no_content
+        render json: { success: true, id: @todo.id }, status: :no_content
       end
 
       private

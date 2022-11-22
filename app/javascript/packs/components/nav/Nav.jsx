@@ -29,7 +29,7 @@ const AuthButton = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('userData'));
-    if (user && user.userId) {
+    if (user && user.token) {
       auth.logIn();
     } else {
       auth.logOut();

@@ -20,7 +20,7 @@ const Items = () => {
 
     const handlerRemoveTask = (id) => (e) => {
       e.preventDefault();
-      dispatch(removeTask(id));
+      // dispatch(removeTask(id));
       dispatch(destroyTodo(id));
     };
 

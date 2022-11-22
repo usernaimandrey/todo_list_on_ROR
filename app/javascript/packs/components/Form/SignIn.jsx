@@ -6,10 +6,12 @@ import {
 } from 'react-router-dom';
 import * as Yup from 'yup';
 import router from "../../router";
+import useAuth from '../../hooks/useAuth';
 
 const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const auth = useAuth();
   const signUpSchema = Yup.object().shape({
     email: Yup.string()
       .trim()
@@ -34,7 +36,7 @@ const SignIn = () => {
                     }
                   });
             auth.logIn();
-            localStorage.setItem('userData', JSON.stringify({ userId: data.user_id }));
+            localStorage.setItem('userData', JSON.stringify({ userId: data.user_id, token: data.auth_token }));
             navigate('/', { from: location })
         } catch(e) {
           if (e.response && e.response.status == 404) {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { removeTask } from './toDoReducer.js';
 import router from '../router.js';
 import { fetchGetData } from './toDoReducer.js';
+import extractAuthToken from '../utils/extractAuthToken.js';
 
 const commentAdapter = createEntityAdapter();
 const initialState = commentAdapter.getInitialState();
@@ -11,6 +12,7 @@ export const createComment = createAsyncThunk(
     'comment/createComment',
     async ({ text, todo_id }) => {
         const { data } = await axios({
+            headers: extractAuthToken(),
             method: 'post',
             url: router.createComment(todo_id),
             data: {
