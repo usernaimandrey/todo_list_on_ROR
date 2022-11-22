@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class TodosController < Api::ApplicationController
@@ -31,7 +33,8 @@ module Api
         @todo = Todo.find_by(id: params[:id])
         @todo.destroy
         raise @todo.errors[:base].to_s unless @todo.errors[:base].empty?
-        render json: { success: true }, status: 204
+
+        render json: { success: true }, status: :no_content
       end
 
       private

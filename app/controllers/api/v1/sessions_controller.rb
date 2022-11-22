@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class SessionsController < Api::ApplicationController
       def create
         user = User.find_by(email: permited_params[:email])
-        if user && user.authenticate(permited_params[:password])
+        if user&.authenticate(permited_params[:password])
           sign_in(user)
           render json: {
             status: 200,
@@ -17,8 +19,7 @@ module Api
         end
       end
 
-      def destroy
-      end
+      def destroy; end
 
       private
 
