@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  text: 
-  state: MyString
+  text: go work
+  state: active
+  user: one
 
 two:
-  text: 
-  state: MyString
+  text: go sleep
+  state: finished
+  user: two

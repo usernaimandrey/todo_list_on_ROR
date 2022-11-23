@@ -8,11 +8,12 @@ module Api
       def create
         @todo = Todo.find_by(id: params[:todo_id])
         @comment = @todo.comments.build(comment_params)
+        @comment.user = current_user
 
         if @comment.save
           render json: @comment
         else
-          invalid_resource!(@comment)
+          render json: { status: :unprocessable_entity }
         end
       end
 

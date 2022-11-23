@@ -52,7 +52,6 @@ export const commentSlice = createSlice({
             commentAdapter.addOne(state, payload)
         })
         .addCase(fetchGetData.fulfilled, (state, { payload }) => {
-            console.log(payload)
             payload.forEach(({ comments }) => {
                 commentAdapter.addMany(state, comments)
             });

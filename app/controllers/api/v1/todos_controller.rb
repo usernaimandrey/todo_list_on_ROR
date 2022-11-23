@@ -6,7 +6,7 @@ module Api
       before_action :authenticate_request!
 
       def index
-        @todos = Todo.includes(:comments).all
+        @todos = current_user.todos.includes(:comments).all
         respond_to do |format|
           format.json
         end
@@ -14,29 +14,30 @@ module Api
 
       def create
         @todo = Todo.new(todo_params)
+        @todo.user = current_user
 
         if @todo.save
-          render json: @todo
+          render json: @todo, only: %i[id text state]
         else
-          invalid_resource!(@todo)
+          render json: { status: :unprocessable_entity }
         end
       end
 
       def update
-        @todo = Todo.find_by(id: params[:id])
+        @todo = current_user.todos.find_by(id: params[:id])
         if @todo.update(todo_params)
-          render json: @todo
+          render json: @todo, only: %i[id text state]
         else
-          invalid_resource!(@todo)
+          render json: { status: :unprocessable_entity }
         end
       end
 
       def destroy
-        @todo = Todo.find_by(id: params[:id])
+        @todo = current_user.todos.find_by(id: params[:id])
         @todo.destroy
         raise @todo.errors[:base].to_s unless @todo.errors[:base].empty?
 
-        render json: { success: true, id: @todo.id }, status: :no_content
+        render json: { success: true, id: @todo.id }, status: :success
       end
 
       private

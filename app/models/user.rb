@@ -6,5 +6,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: { case_sensitive: false }
 
+  has_many :todos, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   has_secure_password
 end

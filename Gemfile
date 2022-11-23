@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'main'
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
 end
@@ -50,6 +51,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
+  gem 'minitest-power_assert'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
