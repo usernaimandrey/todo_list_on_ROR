@@ -30,7 +30,7 @@ const SignIn = () => {
         try {
           const { data } = await axios({
             method: 'post',
-                    url: router.signIn(),
+                    url: router.session(),
                     data: {
                       values
                     }

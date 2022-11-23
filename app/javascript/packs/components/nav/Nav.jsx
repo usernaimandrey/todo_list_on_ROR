@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react';
+import axios from 'axios'
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +15,7 @@ import FilterButtonGrupp from '../filterButtonGroupp/filterButtonGrupp.jsx';
 import Items from '../Items/Items.jsx';
 import SignUp from '../Form/SignUp.jsx';
 import SignIn from '../Form/SignIn.jsx';
+import router from "../../router.js";
 
 const PrivateRoute = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('userData'));
@@ -35,13 +37,21 @@ const AuthButton = () => {
       auth.logOut();
     }
   });
-  const handler = () => {
-    auth.logOut();
-    navigate('/signin', { from: location });
+  const handler = async () => {
+    try {
+      await axios({
+        method: 'delete',
+        url: router.session(),
+      });
+      auth.logOut();
+      navigate('/signin', { from: location });
+    } catch(e) {
+      console.log(e);
+    }
   };
   return (
     auth.logedIn
-      ? <button type="button" className="btn btn-link" onClick={handler}>SignOut</button>
+      ? <button type="button" className="btn btn-link" onClick={() => handler()}>SignOut</button>
       : <Link className="nav-link active" aria-current="page" to="/signup">Signup</Link>
   );
 };

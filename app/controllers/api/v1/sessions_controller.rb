@@ -16,7 +16,12 @@ module Api
         end
       end
 
-      def destroy; end
+      def destroy
+        return unless signed_in?
+
+        sign_out
+        render json: { status: 200 }
+      end
 
       private
 

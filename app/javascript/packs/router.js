@@ -12,5 +12,5 @@ export default {
   getComments: () => [host, prefix, 'comments.json'].join('/'),
   createComment: (todo_id) => [host, prefix, 'todos', todo_id, 'comments.json'].join('/'),
   signUp: () => [host, prefix, 'auth'].join('/'),
-  signIn: () => [host, prefix, 'session'].join('/'),
+  session: () => [host, prefix, 'session'].join('/'),
 }
