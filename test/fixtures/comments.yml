@@ -4,8 +4,3 @@ one:
   text: MyString
   todo: one
   user: one
-
-two:
-  text: MyString
-  todo: two
-  user: one

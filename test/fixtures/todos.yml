@@ -5,7 +5,7 @@ one:
   state: active
   user: one
 
-two:
+no_comments:
   text: go sleep
   state: finished
-  user: two
+  user: one
