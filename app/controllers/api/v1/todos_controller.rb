@@ -37,7 +37,7 @@ module Api
         @todo.destroy
         raise @todo.errors[:base].to_s unless @todo.errors[:base].empty?
 
-        render json: { success: true, id: @todo.id }, status: :success
+        render json: { success: true, id: @todo.id }
       end
 
       private

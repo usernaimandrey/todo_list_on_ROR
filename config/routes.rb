@@ -3,8 +3,6 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  # get '*unmatched_route', to: 'home#index'
-
   namespace :api do
     namespace :v1 do
       resources :todos, only: %i[index create update destroy] do
@@ -16,4 +14,7 @@ Rails.application.routes.draw do
       post 'auth', to: 'auth#signup'
     end
   end
+
+  get '/*path', to: 'home#index'
+  # get '*unmatched_route', to: 'home#index'
 end
